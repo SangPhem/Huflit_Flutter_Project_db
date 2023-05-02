@@ -7,10 +7,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $invoice = date('YmdHis');
     $idUser = $_POST['idUser'];
 
-    $query_cek_cart = mysqli_query($connection,"SELECT * FROM cart WHERE id_user = '$idUser'");
-    $result_cek_cart = mysqli_fetch_array($query_cek_cart);
+    $query_check_cart = mysqli_query($connection,"SELECT * FROM cart WHERE id_user = '$idUser'");
+    $result_check_cart = mysqli_fetch_array($query_check_cart);
 
-    if($result_cek_cart){
+    if($result_check_cart){
 
         $insert_invoice = "INSERT INTO orders (id_orders,invoice,id_user,order_at,status) VALUE('','$invoice','$idUser', NOW(),1)";
         if (mysqli_query($connection,$insert_invoice)){

@@ -5,17 +5,17 @@ require "config.php";
 if($_SERVER["REQUEST_METHOD"]=='POST'){
     $respone = array();
     $cartID = $_POST['cartID'];
-    $tipe = $_POST['tipe'];
+    $type = $_POST['type'];
 
-    $cek_cart = mysqli_query($connection, "SELECT * FROM cart WHERE id_cart = '$cartID'");
-    $reseult = mysqli_fetch_array($cek_cart);
+    $check_cart = mysqli_query($connection, "SELECT * FROM cart WHERE id_cart = '$cartID'");
+    $result = mysqli_fetch_array($check_cart);
 
-    $qty = $reseult['qty'];
+    $qty = $result['qty'];
 
-    if($reseult){
-        if($tipe = "tambah"){
-            $update_tambah = mysqli_query($connection,"UPDATE cart set quantity = quantity + 1 WHERE id_cart = '$cartID"); 
-            if ($update_tambah) {
+    if($result){
+        if($type = "add"){
+            $update_add = mysqli_query($connection,"UPDATE cart set quantity = quantity + 1 WHERE id_cart = '$cartID"); 
+            if ($update_add) {
                 # code...
                 $respone['value'] = 1;
                 $respone['message'] = "";
@@ -44,8 +44,8 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
                 } 
              } else {
                 # code...
-                $update_kurang = mysqli_query($connection,"UPDATE cart set quantity = quantity - 1 WHERE id_cart = '$cartID"); 
-                if ($update_kurang) {
+                $update_reduce = mysqli_query($connection,"UPDATE cart set quantity = quantity - 1 WHERE id_cart = '$cartID"); 
+                if ($update_reduce) {
                     # code...
                     $respone['value'] = 1;
                     $respone['message'] = "";
