@@ -24,7 +24,7 @@
             if(mysqli_query($connection , $insertToCart))
             {  
                 $response['value'] = 1;
-                $response['message'] = "Thêm vao giỏ thành công";
+                $response['message'] = "Thêm vào giỏ thành công";
                 echo json_encode($response);
             }
             else{
@@ -34,4 +34,3 @@
             }
         }
     }
-?>
