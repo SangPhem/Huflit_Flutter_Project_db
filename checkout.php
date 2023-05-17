@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if($result_check_cart){
 
         $insert_invoice = "INSERT INTO orders (id_orders,invoice,id_user,order_at,status) VALUE('','$invoice','$idUser', NOW(),1)";
-        if (mysqli_query($connection,$insert_invoice)){
+        if (mysqli_query($connection,$insert_invoice)) {
             
             $query_insert_cart_detail = mysqli_query($connection,"SELECT * FROM cart WHERE id_user = '$idUser'");
             while($row_cart = mysqli_fetch_array($query_insert_cart_detail)){
@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $quantity = $row_cart['quantity'];
                 $price = $row_cart['price'];
 
-                $insert_invoice_detail = mysqli_query($connection , "INSERT INTO order_details VALUE('','$invoice','$idProduct','$quantity','$price'");
+                $insert_invoice_detail = mysqli_query($connection , "INSERT INTO order_details VALUE('','$invoice','$idProduct','$quantity','$price')");
             }
 
 

@@ -16,7 +16,7 @@ while ($row_order = mysqli_fetch_array($query_select_order)){
     $key['detail'] = array();
 
     $query_select_order_detail = mysqli_query($connection, "SELECT order_details.*, product.name FROM order_details JOIN product on 
-    order_details.id_product = product.id_product WHERE order_details.invoice = '$noInvoice'");
+    order_details.id_product = product.id_product WHERE order_details.invoice = '$noInvoice' LIMIT 5");
 
     while($row_order_detail = mysqli_fetch_array($query_select_order_detail)){
         $key['detail'][] = array(
