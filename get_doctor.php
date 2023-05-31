@@ -30,6 +30,7 @@ if ($result->num_rows > 0) {
             'ngaysinh' => $row['ngaysinh'],
             'tuoinghe' => $row['tuoinghe'],
             'benhvien' => $row['benhvien'],
+            'sdt' => $row['sdt'],
             'avatar' => $row['avatar']
         );
 
