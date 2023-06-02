@@ -3,7 +3,7 @@
 require "config.php";
 
 if($_SERVER["REQUEST_METHOD"]=='POST'){
-    $respone = array();
+    $response = array();
     $cartID = $_POST['cartID'];
     $type = $_POST['type'];
 
@@ -16,53 +16,44 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
         if($type == "add"){
             $update_add = mysqli_query($connection,"UPDATE cart set quantity = quantity + 1 WHERE id_cart = '$cartID'"); 
             if ($update_add) {
-                # code...
-                $respone['value'] = 1;
-                $respone['message'] = "tang";
-                echo json_encode($respone);
+                $response['value'] = 1;
+                $response['message'] = "Tăng";
+                echo json_encode($response);
             } else {
-                # code...
-                $respone['value'] = 0;
-                $respone['message'] = "Failed to add the quantity";
-                echo json_encode($respone);
+                $response['value'] = 0;
+                $response['message'] = "Failed to add the quantity";
+                echo json_encode($response);
             }
             
-        }else{
-             if ($qty == "1") {
-                # code...
-                $query_delete = mysqli_query($connection,"DELETE FROM cart WHERE id_cart = '$cartID");
+        } else {
+             if ($qty == 1) {
+                $query_delete = mysqli_query($connection,"DELETE FROM cart WHERE id_cart = '$cartID'");
                 if ($query_delete) {
-                    # code...
-                    $respone['value'] = 1;
-                    $respone['message'] = "";
-                    echo json_encode($respone);
+                    $response['value'] = 1;
+                    $response['message'] = "";
+                    echo json_encode($response);
                 } else {
-                    # code...
-                    $respone['value'] = 0;
-                    $respone['message'] = "Failed to add the quantity";
-                    echo json_encode($respone);
+                    $response['value'] = 0;
+                    $response['message'] = "Failed to reduce the quantity";
+                    echo json_encode($response);
                 } 
              } else {
-                # code...
                 $update_reduce = mysqli_query($connection,"UPDATE cart set quantity = quantity - 1 WHERE id_cart = '$cartID'"); 
                 if ($update_reduce) {
-                    # code...
-                    $respone['value'] = 1;
-                    $respone['message'] = "giam";
-                    echo json_encode($respone);
+                    $response['value'] = 1;
+                    $response['message'] = "Giảm";
+                    echo json_encode($response);
                 } else {
-                    # code...
-                    $respone['value'] = 0;
-                    $respone['message'] = "Failed to add the quantity";
-                    echo json_encode($respone);
+                    $response['value'] = 0;
+                    $response['message'] = "Failed to reduce the quantity";
+                    echo json_encode($response);
                 }
-             }
-                
+             }    
         }
-    }else{
-        $respone['value'] = 0;
-        $respone['message'] = "Failed to add the quantity";
-        echo json_encode($respone);
+    } else {
+        $response['value'] = 0;
+        $response['message'] = "Failed to add the quantity";
+        echo json_encode($response);
     }
 }
 

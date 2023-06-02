@@ -15,8 +15,8 @@ if ($conn->connect_error) {
 // Lấy doctor_id từ request
 $doctorId = $_POST['doctor_id'];
 
-// Truy vấn dữ liệu từ bảng booked_schedule với điều kiện doctor_id = $doctorId
-$sql = "SELECT * FROM booked_schedule WHERE doctor_id = $doctorId";
+// Truy vấn dữ liệu từ bảng booked_schedule với điều kiện doctor_id = $doctorId và sắp xếp theo booked_date tăng dần
+$sql = "SELECT * FROM booked_schedule WHERE doctor_id = $doctorId ORDER BY booked_date ASC";
 $result = $conn->query($sql);
 
 // Mảng chứa dữ liệu lịch hẹn
@@ -42,4 +42,5 @@ echo json_encode($bookedSchedules);
 
 // Đóng kết nối
 $conn->close();
+
 ?>
